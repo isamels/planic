@@ -1,7 +1,7 @@
 import pool from './pool.js';
 
-async function getAllTasks() {
-  const { rows } = await pool.query('SELECT * FROM tasks');
+async function getAllTasks(user_id) {
+  const { rows } = await pool.query('SELECT * FROM tasks WHERE user_id = $1', [user_id]);
   return rows;
 }
 
@@ -10,7 +10,7 @@ async function getTask(id) {
   return rows[0];
 }
 
-async function addTask({ user_id, title, description, deadline, minutes, priority, difficulty }) {
+async function addTask(user_id, { title, description, deadline, minutes, priority, difficulty }) {
   const query = `
     INSERT INTO tasks (user_id, title, description, deadline, minutes, priority, difficulty)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
