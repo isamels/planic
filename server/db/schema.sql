@@ -12,9 +12,9 @@ CREATE TABLE tasks (
   title VARCHAR(50) NOT NULL,
   description TEXT,
   deadline DATE,
-  minutes INTEGER NOT NULL CHECK (minutes >= 0),
-  priority SMALLINT NOT NULL CHECK (priority BETWEEN 1 AND 5),
-  difficulty SMALLINT NOT NULL CHECK (difficulty BETWEEN 1 AND 5),
+  minutes INTEGER NOT NULL CHECK (minutes > 0),
+  priority SMALLINT DEFAULT 0 CHECK (priority BETWEEN 1 AND 5),
+  difficulty SMALLINT DEFAULT 0 CHECK (difficulty BETWEEN 1 AND 5),
   completed BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
