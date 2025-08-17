@@ -7,7 +7,6 @@ const usersRouter = Router();
 
 usersRouter.post('/signup', asyncHandler(usersController.signupPost));
 usersRouter.post('/login', asyncHandler(usersController.loginPost));
-usersRouter.post('/logout', authenticate, asyncHandler(usersController.logoutPost));
 usersRouter.get('/account', authenticate, asyncHandler(usersController.accountGet));
 usersRouter.delete('/account', authenticate, asyncHandler(usersController.accountDelete));
 
