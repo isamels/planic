@@ -1,10 +1,15 @@
 import express from 'express';
+import cors from 'cors';
+import usersRouter from './routes/usersRouter.js';
 import tasksRouter from './routes/tasksRouter.js';
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
+app.use('/api/users', usersRouter);
 app.use('/api/tasks', tasksRouter);
 
 app.get('/', (req, res) => {
@@ -20,6 +25,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
