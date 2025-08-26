@@ -1,14 +1,14 @@
 import ErrorMessage from './ErrorMessage.jsx';
 
-export default function Form({ onSubmit, error }) {
+export default function Form({ onChange, onSubmit, error }) {
   return (
     <div>
-      <ErrorMessage message={error} />
+      {error && <ErrorMessage message={error} />}
       <form onSubmit={onSubmit}>
         <label htmlFor="username">Username: </label>
-        <input type="text" name="username" id="username" required />
+        <input type="text" name="username" id="username" onChange={onChange} />
         <label htmlFor="password">Password: </label>
-        <input type="password" name="password" id="password" required />
+        <input type="password" name="password" id="password" onChange={onChange} />
         <button type="submit">Submit</button>
       </form>
     </div>
