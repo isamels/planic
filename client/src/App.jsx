@@ -1,12 +1,14 @@
-import './App.css'
+import './styles/App.css';
+import AuthProvider from './AuthProvider';
 
 function App() {
-
   return (
-    <>
-      <h1>Planic!</h1>
-    </>
-  )
+    <div className="App">
+      <AuthProvider>
+        <h1>Planic!</h1>
+      </AuthProvider>
+    </div>
+  );
 }
 
-export default App
+export default App;
