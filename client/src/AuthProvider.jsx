@@ -7,18 +7,27 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const isExpired = (token) => {
+    try {
+      const decoded = jwtDecode(token);
+      const now = Math.floor(Date.now() / 1000);
+      return decoded.exp < now;
+    } catch {
+      return true;
+    }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUser({ id: decoded.id, username: decoded.username });
-      } catch (err) {
-        console.log("Invalid token", err);
-        setUser(null);
-      }
+    if (token && !isExpired(token)) {
+      const decoded = jwtDecode(token);
+      setUser({ id: decoded.id, username: decoded.username });
+    } else {
+      localStorage.removeItem('token');
+      setUser(null);
     }
+
     setLoading(false);
   }, []);
 
