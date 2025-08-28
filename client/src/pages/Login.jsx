@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { login } from '../api/user';
+import { login } from '../api/users';
 import Form from '../components/Form';
 import { useAuth } from "../AuthProvider";
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signup } from '../api/user';
+import { signup } from '../api/users';
 import Form from '../components/Form';
 import { useAuth } from "../AuthProvider";
 
