@@ -1,4 +1,4 @@
-import { useAuth } from "../AuthProvider";
+import { useAuth } from '../AuthProvider';
 
 export default function Logout() {
   const { setUser } = useAuth();
