@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Account from './pages/Account';
+import Tasks from './pages/Tasks';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/account" element={<Account />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/availability" element={<p>Availability</p>} />
+              <Route path="/planner" element={<p>Planner</p>} />
             </Route>
           </Routes>
         </AuthProvider>
