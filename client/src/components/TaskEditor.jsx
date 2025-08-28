@@ -1,10 +1,11 @@
 import ErrorMessage from './ErrorMessage.jsx';
 
-export default function CreateTask({ input, onChange, onSubmit, error }) {
+export default function TaskEditor({ input, onChange, onSubmit, onDelete, currentTask, error }) {
+
   return (
     <div>
       {error && <ErrorMessage message={error} />}
-      <h2>Create new task</h2>
+      {currentTask ? <h2>Edit task</h2> : <h2>Create new task</h2>}
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Title</label>
         <input type="text" name="title" id="title" value={input.title} onChange={onChange} />
@@ -19,8 +20,9 @@ export default function CreateTask({ input, onChange, onSubmit, error }) {
         <input type="range" name="priority" id="priority" min="1" max="5" step="1" value={input.priority || 3} onChange={onChange} />
         <label htmlFor="difficulty">Difficulty</label>
         <input type="range" name="difficulty" id="difficulty" min="1" max="5" step="1" value={input.difficulty || 3} onChange={onChange} />
-        <button type="submit">Submit</button>           
+        {currentTask ? <button type="submit">Save task</button> : <button type="submit">Create task</button>}
       </form>
+      {currentTask ? <button onClick={onDelete}>Delete</button> : null}
     </div>
   )
 }
