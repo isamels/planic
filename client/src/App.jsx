@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Account from './pages/Account';
 import Tasks from './pages/Tasks';
+import Availability from './pages/Availability';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/account" element={<Account />} />
               <Route path="/tasks" element={<Tasks />} />
-              <Route path="/availability" element={<p>Availability</p>} />
+              <Route path="/availability" element={<Availability />} />
               <Route path="/planner" element={<p>Planner</p>} />
             </Route>
           </Routes>
