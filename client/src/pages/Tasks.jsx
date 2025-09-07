@@ -67,6 +67,12 @@ export default function Tasks() {
     setCurrentTask(task);
     setInput(task);
   };
+  
+  const onTaskCancel = (e) => {
+    setInput({ title: '', minutes: 0 });
+    setError('');
+    setCurrentTask(null);
+  }
 
   const onTaskDelete = async (e) => {
     try {
@@ -88,6 +94,7 @@ export default function Tasks() {
         input={input}
         onChange={onChange}
         onSubmit={currentTask ? onUpdateTask : onCreateTask}
+        onCancel={onTaskCancel}
         onDelete={onTaskDelete}
         currentTask={currentTask}
         error={error}
