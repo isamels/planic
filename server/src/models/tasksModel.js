@@ -12,8 +12,8 @@ async function getTask(id) {
 
 async function addTask(user_id, { title, description, deadline, minutes, priority, difficulty }) {
   const query = `
-    INSERT INTO tasks (user_id, title, description, deadline, minutes, priority, difficulty)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO tasks (user_id, title, description, deadline, minutes, priority, difficulty, position)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, COALESCE((SELECT MAX(position) FROM tasks WHERE user_id = $1), 0) + 1)
     RETURNING *
   `;
 
