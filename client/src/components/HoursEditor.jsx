@@ -20,8 +20,9 @@ export default function HoursEditor({ date, onClose }) {
   };
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     setDateHours(date, hours);
-    alert("Hours on " + date.toDateString() + " set to " + availability);
+    onClose();
   };
 
   return (
