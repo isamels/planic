@@ -14,9 +14,9 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-const getDefaultHours = () => api.get(`${API_BASE}/default-hours`);
+const getDefaultHours = (day) => api.get(`${API_BASE}/default-hours`, { params: { day } });
 const setDefaultHours = (day, hours) => api.post(`${API_BASE}/default-hours`, { day, hours });
-const getDateHours = () => api.get(`${API_BASE}/date-hours`);
+const getDateHours = (date) => api.get(`${API_BASE}/date-hours`, { params: { date } });
 const setDateHours = (date, hours) => api.post(`${API_BASE}/date-hours`, { date, hours });
 
 export { getDefaultHours, setDefaultHours, getDateHours, setDateHours };
