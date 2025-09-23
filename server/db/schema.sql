@@ -34,7 +34,7 @@ CREATE TABLE task_chunks (
 
 CREATE TABLE availability_default (
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  day_of_week INTEGER NOT NULL CHECK (day_of_week BETWEEN 0 AND 6),
+  day_of_week INTEGER NOT NULL CHECK (day_of_week BETWEEN 0 AND 7),
   hours INTEGER NOT NULL CHECK (hours >= 0),
   PRIMARY KEY (user_id, day_of_week)
 );
