@@ -3,6 +3,9 @@ import pool from './pool.js';
 async function getDefaultHours(user_id, day) {
   const { rows } = await pool.query('SELECT * FROM availability_default WHERE user_id = $1 AND day_of_week = $2', [user_id, day]);
   if (rows.length === 0) {
+    if(day !== 0) {
+      return getDefaultHours(user_id, 0);
+    }
     return { user_id, day_of_week: day, hours: 0 };
   }
   return rows[0];
@@ -27,7 +30,11 @@ async function getDateHours(user_id, dateString) {
   const date = new Date(dateString);
   const { rows } = await pool.query('SELECT * FROM availability_custom WHERE user_id = $1 AND date = $2', [user_id, date]);
   if (rows.length === 0) {
-    return getDefaultHours(user_id, date.getDay());
+    const day = date.getDay();
+    if (day === 0) {
+      return getDefaultHours(user_id, 7);
+    }
+    return getDefaultHours(user_id, day);
   }
   return rows[0];
 }

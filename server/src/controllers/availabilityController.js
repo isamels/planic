@@ -1,8 +1,8 @@
 import * as db from '../models/availabilityModel.js';
 
 async function defaultHoursGet(req, res) {
-  const { hours } = await db.getDefaultHours(req.user.id, req.query.day);
-  res.json({ hours });
+  const { day_of_week, hours } = await db.getDefaultHours(req.user.id, req.query.day);
+  res.json({ day_of_week, hours });
 }
 
 async function defaultHoursPost(req, res) {
