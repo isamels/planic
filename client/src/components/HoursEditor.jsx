@@ -15,7 +15,7 @@ export default function HoursEditor({ date, onClose }) {
   }, []);
 
   const onChange = (e) => {
-    const {value } = e.target;
+    const { value } = e.target;
     setHours(value);
   };
 
